@@ -4,30 +4,22 @@
     api-level="21"
     density="xxhdpi"
     format="7"
-    timestamp="91048230525900"
+    timestamp="106677598994692"
     token="-1755509590407186213" >
 
     <task
         name="javac"
-        duration="721" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="332" />
+        duration="0" />
     <task
         name="verifier"
-        duration="60" />
+        duration="0" />
 
-    <artifact
-        location="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
-
-    <build timestamp="91048230525900" >
-        <artifact
-            location="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\outputs\apk\app-debug.apk"
-            type="MAIN" />
-    </build>
+    <build timestamp="106677598994692" />
 
 </instant-run>
