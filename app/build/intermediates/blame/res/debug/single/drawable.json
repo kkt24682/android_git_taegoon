@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic_btn.xml",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\src\\main\\res\\drawable\\mic_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic_btn.xml",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\src\\main\\res\\drawable\\mic_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\spinner_background.xml",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\src\\main\\res\\drawable\\spinner_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic.png",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\src\\main\\res\\drawable\\mic.png"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic_click.png",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\src\\main\\res\\drawable\\mic_click.png"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic_click.png",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\src\\main\\res\\drawable\\mic_click.png"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mic.png",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160614\\app\\src\\main\\res\\drawable\\mic.png"
+    },
+    {
+        "merged": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\spinner_background.xml",
+        "source": "C:\\Users\\Taegoon\\Documents\\android\\NaverspeechClient_20160609\\app\\src\\main\\res\\drawable\\spinner_background.xml"
+    }
+]

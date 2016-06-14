@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spnItem_array">
+        <item>한국어->영어</item>
+        <item>한국어->일어</item>
+        <item>한국어->중국어</item>
+    </string-array>
+    <color name="color_background">#303030</color>
+    <color name="color_text">#a8a8a8</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <item name="audioRecording" type="id"/>
+    <item name="clientInactive" type="id"/>
+    <item name="clientReady" type="id"/>
+    <item name="endPointDetected" type="id"/>
+    <item name="finalResult" type="id"/>
+    <item name="getAuthorization" type="id"/>
+    <item name="partialResult" type="id"/>
+    <item name="recognitionError" type="id"/>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">NaverspeechClientOpenApi</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="label">Naver Open API 통역앱</string>
+    <string name="str_listening">listening</string>
+    <string name="str_start">Start</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer Api levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular Api-level can go here. -->
+
+    </style>
+</resources>
