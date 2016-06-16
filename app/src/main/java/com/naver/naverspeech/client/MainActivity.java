@@ -10,14 +10,15 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.naver.naverspeech.client.utils.AudioWriterPCM;
 import com.naver.speech.clientapi.SpeechConfig;
@@ -51,13 +52,14 @@ public class MainActivity extends Activity {
 
 	private TextView trsView;
 	private TextView txtResult;
-	private ImageButton btnStart;
+	public ImageButton btnStart;
 	private MediaPlayer mp;
 
 	public String trsRes;
 	private String mResult;
 	private String mTrsParam;
 	private String mTTSParam;
+	private boolean mPressState = false;
 
 	private AudioWriterPCM writer;
 
@@ -69,77 +71,82 @@ public class MainActivity extends Activity {
 	// Handle speech recognition Messages.
 	private void handleMessage(final Message msg) {
 		switch (msg.what) {
-		case com.naver.naverspeech.client.R.id.clientReady:
-			// Now an user can speak.
-			txtResult.setText("Connected");
-			writer = new AudioWriterPCM(
-					Environment.getExternalStorageDirectory().getAbsolutePath() + "/NaverSpeechTest");
-			Log.d(TAG,Environment.getExternalStorageDirectory().getAbsolutePath().toString());
-			writer.open("Test");
-			break;
+			case R.id.clientReady:
+				// Now an user can speak.
+				txtResult.setText("Connected");
+				writer = new AudioWriterPCM(
+						Environment.getExternalStorageDirectory().getAbsolutePath() + "/NaverSpeechTest");
+				Log.d(TAG, Environment.getExternalStorageDirectory().getAbsolutePath().toString());
+				writer.open("Test");
+				break;
 
-		case com.naver.naverspeech.client.R.id.audioRecording:
-			writer.write((short[]) msg.obj);
-			break;
+			case R.id.audioRecording:
+				writer.write((short[]) msg.obj);
+				break;
 
-		case com.naver.naverspeech.client.R.id.partialResult:
-			// Extract obj property typed with String.
-			mResult = (String) (msg.obj);
-			txtResult.setText("* 음성인식결과::" + mResult);
-			break;
-
-		case com.naver.naverspeech.client.R.id.finalResult:  //음성인식 완료 시점
-			// Extract obj property typed with String array.
-			// The first element is recognition result for speech.
-			String[] results = (String[]) msg.obj;
-			mResult = results[0];
-			txtResult.setText("* 음성인식결과::" + mResult);
-
-			/**
-			 * API메소드 호출 쓰레드
-			 * trsRes 기계번역결과
-			 * mResult 음성인식결과
-			 */
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					trsRes = callTranslateAPI(mResult);		//기계번역 API 메소드
-					if (trsRes == null) trsRes = "";
-					if (!trsRes.equals("")) {
-						callTTSAPI(trsRes);					//음성합성 API 메소드
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								trsView.setText("* 기계번역결과::" + trsRes);
-							}
-						});
-					}
+			case R.id.partialResult:
+				// Extract obj property typed with String.
+				mResult = (String) (msg.obj);
+				txtResult.setText("* 음성인식결과::" + mResult);
+				break;
+			case R.id.endPointDetected:
+				if(!mPressState)
+				{
+					Toast.makeText(MainActivity.this, "음성인식종료!!", Toast.LENGTH_SHORT).show();
 				}
-			}).start();
+				break;
+			case R.id.finalResult:  //음성인식 완료 시점
+				// Extract obj property typed with String array.
+				// The first element is recognition result for speech.
+				String[] results = (String[]) msg.obj;
+				mResult = results[0];
+				txtResult.setText("* 음성인식결과::" + mResult);
 
-			break;
+				/**
+				 * API메소드 호출 쓰레드
+				 * trsRes 기계번역결과
+				 * mResult 음성인식결과
+				 */
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						trsRes = callTranslateAPI(mResult);        //기계번역 API 메소드
+						if (trsRes == null) trsRes = "";
+						if (!trsRes.equals("")) {
+							callTTSAPI(trsRes);                    //음성합성 API 메소드
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									trsView.setText("* 기계번역결과::" + trsRes);
+								}
+							});
+						}
+					}
+				}).start();
 
-		case com.naver.naverspeech.client.R.id.recognitionError:
-			if (writer != null) {
-				writer.close();
-			}
+				break;
 
-			mResult = "Error code : " + msg.obj.toString();
-			txtResult.setText(mResult);
-			//btnStart.setText(com.naver.naverspeech.client.R.string.str_start);
-			btnStart.setEnabled(true);
-			isRunning = false;
-			break;
+			case R.id.recognitionError:
+				if (writer != null) {
+					writer.close();
+				}
 
-		case com.naver.naverspeech.client.R.id.clientInactive:
-			if (writer != null) {
-				writer.close();
-			}
+				mResult = "Error code : " + msg.obj.toString();
+				txtResult.setText(mResult);
+				//btnStart.setText(com.naver.naverspeech.client.R.string.str_start);
+				btnStart.setEnabled(true);
+				isRunning = false;
+				break;
 
-			//btnStart.setText(com.naver.naverspeech.client.R.string.str_start);
-			btnStart.setEnabled(true);
-			isRunning = false;
-			break;
+			case R.id.clientInactive:
+				if (writer != null) {
+					writer.close();
+				}
+
+				//btnStart.setText(com.naver.naverspeech.client.R.string.str_start);
+				btnStart.setEnabled(true);
+				isRunning = false;
+				break;
 		}
 	}
 
@@ -290,7 +297,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		setContentView(com.naver.naverspeech.client.R.layout.activity_main);
+		setContentView(R.layout.activity_main);
 		setSpinner();
 
 
@@ -313,8 +320,8 @@ public class MainActivity extends Activity {
 		naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID, SPEECH_CONFIG);
 
 
-
-		btnStart.setOnClickListener(new OnClickListener() {
+		/**버튼 click 조작*/
+		/*btnStart.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -337,8 +344,31 @@ public class MainActivity extends Activity {
 					naverRecognizer.getSpeechRecognizer().stop();
 				}
 			}
+		});*/
+
+		/** 버튼 touch 조작*/
+		btnStart.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View view, MotionEvent motionEvent) {
+				int key = motionEvent.getAction();
+				switch (key) {
+					case MotionEvent.ACTION_DOWN:
+						mPressState = true;
+						naverRecognizer.recognize();
+						Toast.makeText(MainActivity.this, "음성인식시작!!", Toast.LENGTH_SHORT).show();
+
+						break;
+					case MotionEvent.ACTION_UP:
+						mPressState = false;
+						naverRecognizer.getSpeechRecognizer().stop();
+
+						break;
+				}
+				return false;
+			}
 		});
 	}
+
 
 	private void setSpinner() {
 
@@ -391,7 +421,6 @@ public class MainActivity extends Activity {
 
 		mResult = "";
 		//txtResult.setText("");
-		//btnStart.setText(com.naver.naverspeech.client.R.string.str_start);
 		btnStart.setEnabled(true);
 	}
 

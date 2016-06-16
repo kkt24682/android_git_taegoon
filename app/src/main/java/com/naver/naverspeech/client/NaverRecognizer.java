@@ -57,46 +57,48 @@ class NaverRecognizer implements SpeechRecognitionListener {
 	@Override
 	public void onInactive() {
 		Log.d(TAG, "Event occurred : Inactive");
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.clientInactive);
+		Message msg = Message.obtain(mHandler, R.id.clientInactive);
 		msg.sendToTarget();
 	}
 
 	@Override
 	public void onReady() {
 		Log.d(TAG, "Event occurred : Ready");
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.clientReady);
+		Message msg = Message.obtain(mHandler, R.id.clientReady);
 		msg.sendToTarget();
 	}
 
 	@Override
 	public void onRecord(short[] speech) {
-		Log.d(TAG, "Event occurred : Record");
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.audioRecording, speech);
-		msg.sendToTarget();
+			Log.d(TAG, "Event occurred : Record");
+			Message msg = Message.obtain(mHandler, R.id.audioRecording, speech);
+			msg.sendToTarget();
 	}
 
 	@Override
 	public void onPartitialResult(String result) {
 		Log.d(TAG, "Partial Result!! (" + result + ")");
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.partialResult, result);
+		Message msg = Message.obtain(mHandler, R.id.partialResult, result);
 		msg.sendToTarget();
 	}
 
 	@Override
 	public void onEndPointDetected() {
 		Log.d(TAG, "Event occurred : EndPointDetected");
+		Message msg = Message.obtain(mHandler, R.id.endPointDetected);
+		msg.sendToTarget();
 	}
 
 	@Override
 	public void onResult(Object[] result) {
 		Log.d(TAG, "Final Result!! (" + result[0] + ")");
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.finalResult, result);
+		Message msg = Message.obtain(mHandler, R.id.finalResult, result);
 		msg.sendToTarget();
 	}
 
 	@Override
 	public void onError(int errorCode) {
-		Message msg = Message.obtain(mHandler, com.naver.naverspeech.client.R.id.recognitionError, errorCode);
+		Message msg = Message.obtain(mHandler, R.id.recognitionError, errorCode);
 		msg.sendToTarget();
 	}
 }
