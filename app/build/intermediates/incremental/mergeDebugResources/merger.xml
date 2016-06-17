@@ -3,6 +3,9 @@
         <item>한국어->영어</item>
         <item>한국어->일어</item>
         <item>한국어->중국어</item>
+        <item>영어->한국어</item>
+        <item>일어->한국어</item>
+        <item>중국어->한국어</item>
     </string-array><string name="str_listening">listening</string><string name="str_start">Start</string><string name="label">Naver Open API 통역앱</string></file><file path="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular Api-level can go here. -->
 

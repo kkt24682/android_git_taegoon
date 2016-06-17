@@ -1,3 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="22.0.0"
+        sha1="176790dd8231ee49eff511113053850dd0f70729">
+        <dex dex="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4c053ce3ac858aaf63bcaa13ea3378ef3c81b6df\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="22.0.0"
+        sha1="9c762ad24b79067c8cff21e6636c416ad0f52683">
+        <dex dex="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_51f7377c745a6731e829c9f8bdd1ee81b45186c2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\libs\Naverspeech-1.0.4.jar"
+        jumboMode="true"
+        revision="22.0.0"
+        sha1="da465f5d7754f74ebb5a76da98a8c5285c525f6f">
+        <dex dex="C:\Users\Taegoon\Documents\android\NaverspeechClient_20160614\app\build\intermediates\transforms\dex\debug\folders\1000\2\Naverspeech-1.0.4_51c8c6aa682d0c9f798f626784d401439dc2434c\classes.dex" />
+    </item>
+
+</items>

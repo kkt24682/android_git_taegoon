@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -90,10 +89,7 @@ public class MainActivity extends Activity {
 				txtResult.setText("* 음성인식결과::" + mResult);
 				break;
 			case R.id.endPointDetected:
-				if(!mPressState)
-				{
-					Toast.makeText(MainActivity.this, "음성인식종료!!", Toast.LENGTH_SHORT).show();
-				}
+				Toast.makeText(MainActivity.this, "음성인식종료!!", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.finalResult:  //음성인식 완료 시점
 				// Extract obj property typed with String array.
@@ -321,7 +317,7 @@ public class MainActivity extends Activity {
 
 
 		/**버튼 click 조작*/
-		/*btnStart.setOnClickListener(new OnClickListener() {
+		btnStart.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -332,8 +328,9 @@ public class MainActivity extends Activity {
 					txtResult.setText("Connecting...");
 					//btnStart.setText(com.naver.naverspeech.client.R.string.str_listening);
 					isRunning = true;
-
+					Toast.makeText(MainActivity.this, "음성인식시작!!", Toast.LENGTH_SHORT).show();
 					naverRecognizer.recognize();
+
 				} else {
 					// This flow is occurred by pushing start button again
 					// when SpeechRecognizer is running.
@@ -344,10 +341,10 @@ public class MainActivity extends Activity {
 					naverRecognizer.getSpeechRecognizer().stop();
 				}
 			}
-		});*/
+		});
 
 		/** 버튼 touch 조작*/
-		btnStart.setOnTouchListener(new View.OnTouchListener() {
+		/*btnStart.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				int key = motionEvent.getAction();
@@ -366,7 +363,7 @@ public class MainActivity extends Activity {
 				}
 				return false;
 			}
-		});
+		});*/
 	}
 
 
@@ -389,10 +386,23 @@ public class MainActivity extends Activity {
 						mTrsParam = "source=ko&target=ja&text=";
 						mTTSParam = "speaker=yuri&speed=0&text=";
 						break;
-					case 2:        // 한-중
-						mTrsParam = "source=ko&target=zh-CN&text=";
-						mTTSParam = "speaker=meimei&speed=0&text=";
-						break;
+                    case 2:        // 한-중
+                        mTrsParam = "source=ko&target=zh-CN&text=";
+                        mTTSParam = "speaker=meimei&speed=0&text=";
+                        break;
+                    case 3:        // 영-한
+                        mTrsParam = "source=en&target=ko&text=";
+                        mTTSParam = "speaker=mijin&speed=0&text=";
+                        break;
+                    case 4:        // 일-한
+                        mTrsParam = "source=ja&target=ko&text=";
+                        mTTSParam = "speaker=mijin&speed=0&text=";
+                        break;
+                    case 5:        // 중-한
+                        mTrsParam = "source=zh-CN&target=ko&text=";
+                        mTTSParam = "speaker=mijin&speed=0&text=";
+                        break;
+
 					default:
 						mTrsParam = "source=ko&target=en&text=";
 						mTTSParam = "speaker=clara&speed=0&text=";

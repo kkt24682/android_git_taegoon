@@ -11,6 +11,9 @@
         <item>한국어->영어</item>
         <item>한국어->일어</item>
         <item>한국어->중국어</item>
+        <item>영어->한국어</item>
+        <item>일어->한국어</item>
+        <item>중국어->한국어</item>
     </string-array>
 
 </resources>
